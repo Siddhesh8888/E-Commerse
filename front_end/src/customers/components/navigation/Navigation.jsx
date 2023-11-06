@@ -1,22 +1,8 @@
-/*
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
-*/
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
-import { Avatar,Button,Menu,MenuItem } from '@mui/material'
+import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import { navigationData } from './navigationData'
 import { useNavigate } from 'react-router-dom'
@@ -24,41 +10,41 @@ import { useNavigate } from 'react-router-dom'
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
- 
+
 export default function Navigation() {
-  const [open,setOpen]=useState(false);
+  const [open, setOpen] = useState(false);
   // const navigate=useNavigate();
 
 
-  const [openAuthModel,setOpenAuthModel] = useState(false);
-  const [anchorEl,setAnchorEl]=useState(false);
-  const jwt=localStorage.getItem("jwt");
-  const openUserMenu=Boolean(anchorEl)
+  const [openAuthModel, setOpenAuthModel] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(false);
+  const jwt = localStorage.getItem("jwt");
+  const openUserMenu = Boolean(anchorEl)
 
-  const handleUserClick=(event)=>{
+  const handleUserClick = (event) => {
     setAnchorEl(event.currentTarget);
   }
 
 
-  const handleCloseUserMenu=(event)=>{
+  const handleCloseUserMenu = (event) => {
     setAnchorEl(null)
   }
 
-  const handleOpen=()=>{
+  const handleOpen = () => {
     setOpenAuthModel(true);
   }
 
-  const handleClose=()=>{
+  const handleClose = () => {
     setOpenAuthModel(false)
   };
 
-  const handleCategoryClick=(category,section,item,close)=>{
+  const handleCategoryClick = (category, section, item, close) => {
     // navigate(`/${category.id}/${section.id}/${item.name}`);
     close();
   };
 
   return (
-    <div className="bg-white z-50">
+    <div className="bg-white z-50 mb-10">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -219,14 +205,14 @@ export default function Navigation() {
 
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                    alt=""
-                  />
-                
+
+                <span className="sr-only">Your Company</span>
+                <img
+                  className="h-8 w-auto"
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  alt=""
+                />
+
               </div>
 
               {/* Flyout menus */}
@@ -234,7 +220,7 @@ export default function Navigation() {
                 <div className="flex h-full space-x-8">
                   {navigationData.categories.map((category) => (
                     <Popover key={category.name} className="flex">
-                      {({ open,close }) => (
+                      {({ open, close }) => (
                         <>
                           <div className="relative flex">
                             <Popover.Button
@@ -298,18 +284,18 @@ export default function Navigation() {
                                           >
                                             {section.items.map((item) => (
                                               <li key={item.name} className="flex">
-                                                <p onClick={()=>
-                                                handleCategoryClick(
-                                                  category,  
-                                                  section,item,close
-                                                ) 
-                                              }
-                                              className='cursor-pointer hover:text-gray-800'
+                                                <p onClick={() =>
+                                                  handleCategoryClick(
+                                                    category,
+                                                    section, item, close
+                                                  )
+                                                }
+                                                  className='cursor-pointer hover:text-gray-800'
                                                 >
                                                   {item.name}
                                                 </p>
                                               </li>
-                                            ))} 
+                                            ))}
                                           </ul>
                                         </div>
                                       ))}
@@ -327,7 +313,7 @@ export default function Navigation() {
                   {navigationData.pages.map((page) => (
                     <a
                       key={page.name}
-                      href={page.href }
+                      href={page.href}
                       className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                     >
                       {page.name}
@@ -338,64 +324,64 @@ export default function Navigation() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                    {
-                      true?(
-                        <div>
-                          <Avatar className='text-white'
+                  {
+                    true ? (
+                      <div>
+                        <Avatar className='text-white'
                           onClick={handleUserClick}
-                          aria-controls={open ? "basic-menu":undefined}
+                          aria-controls={open ? "basic-menu" : undefined}
                           aria-haspopup="true"
-                          aria-expanded={open?"true":undefined}
+                          aria-expanded={open ? "true" : undefined}
                           sx={{
-                            bgcolor:deepPurple[500],
-                            color:"white",
-                            cursor:"pointer",
+                            bgcolor: deepPurple[500],
+                            color: "white",
+                            cursor: "pointer",
                           }}>S</Avatar>
 
 
-                          <Menu
-                            id="basic-menu"
-                            anchorEl={anchorEl}
-                            open={openUserMenu}
-                            onClose={handleCloseUserMenu}
-                            MenuListProps={{
-                              'aria-labelledby':'basic-button',
-                            }}>
-                              <MenuItem onClick={handleCloseUserMenu}>
-                                Profile
-                              </MenuItem>
-                              <MenuItem >
-                              My Orders</MenuItem>
-                              <MenuItem>Logout</MenuItem>
-                            </Menu>
-                        </div>
-                      ):(
-                        <Button onClick={handleOpen}
+                        <Menu
+                          id="basic-menu"
+                          anchorEl={anchorEl}
+                          open={openUserMenu}
+                          onClose={handleCloseUserMenu}
+                          MenuListProps={{
+                            'aria-labelledby': 'basic-button',
+                          }}>
+                          <MenuItem onClick={handleCloseUserMenu}>
+                            Profile
+                          </MenuItem>
+                          <MenuItem >
+                            My Orders</MenuItem>
+                          <MenuItem>Logout</MenuItem>
+                        </Menu>
+                      </div>
+                    ) : (
+                      <Button onClick={handleOpen}
                         className='text-sm font-medium text-gray-700 hover:text-gray-800'
-                        >Sign In</Button> 
-                      )
-                    }
-                   </div>
+                      >Sign In</Button>
+                    )
+                  }
+                </div>
 
-                   {/*Search*/}
-                    <div className='flex lg:ml-6'
-                    >
-                      <p className='p-2 text-gray-700 hover:text-gray-800'>
-                      <span className='sronly'></span>
-                      <MagnifyingGlassIcon className='h-6 w-6' aria-hidden='true'/>
-                      </p>
-                    </div>
+                {/*Search*/}
+                <div className='flex lg:ml-6'
+                >
+                  <p className='p-2 text-gray-700 hover:text-gray-800'>
+                    <span className='sronly'></span>
+                    <MagnifyingGlassIcon className='h-6 w-6' aria-hidden='true' />
+                  </p>
+                </div>
 
-                    {/*Cart*/}
-                    <div className='m1-4 flow-root lg:ml-6'>
-                      <Button className='group -m-2 flex-root lg:ml-6'>
-                        <ShoppingBagIcon className='h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500' aria-hidden="true" />
-                        <span className='ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800'>2</span>
-                        <span className='sr-only'>items in cart,view bag</span>
-                       </Button>
-                    </div>
+                {/*Cart*/}
+                <div className='m1-4 flow-root lg:ml-6'>
+                  <Button className='group -m-2 flex-root lg:ml-6'>
+                    <ShoppingBagIcon className='h-6 w-6 flex-shrink-0 text-gray-400 group-hover:text-gray-500' aria-hidden="true" />
+                    <span className='ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800'>2</span>
+                    <span className='sr-only'>items in cart,view bag</span>
+                  </Button>
+                </div>
 
-                  {/* <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                {/* <a href="#" className="text-sm font-medium text-gray-700 hover:text-gray-800">
                     Sign in  
                   </a>
                   <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
@@ -414,7 +400,7 @@ export default function Navigation() {
                     <span className="ml-3 block text-sm font-medium">CAD</span>
                     <span className="sr-only">, change currency</span>
                   </a> */}
-                
+
 
                 {/* Search */}
                 {/* <div className="flex lg:ml-6">
