@@ -1,7 +1,6 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { Bars3Icon, MagnifyingGlassIcon, ShoppingBagIcon, XMarkIcon } from '@heroicons/react/24/outline'
-
 import { Avatar, Button, Menu, MenuItem } from '@mui/material'
 import { deepPurple } from '@mui/material/colors'
 import { navigationData } from './navigationData'
@@ -13,7 +12,7 @@ function classNames(...classes) {
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
-  // const navigate=useNavigate();
+  const navigate = useNavigate();
 
 
   const [openAuthModel, setOpenAuthModel] = useState(false);
@@ -39,7 +38,7 @@ export default function Navigation() {
   };
 
   const handleCategoryClick = (category, section, item, close) => {
-    // navigate(`/${category.id}/${section.id}/${item.name}`);
+    navigate(`/${category.id}/${section.id}/${item.name}`);
     close();
   };
 
@@ -350,7 +349,7 @@ export default function Navigation() {
                           <MenuItem onClick={handleCloseUserMenu}>
                             Profile
                           </MenuItem>
-                          <MenuItem >
+                          <MenuItem onClick={() => navigate(`/account/order`)} >
                             My Orders</MenuItem>
                           <MenuItem>Logout</MenuItem>
                         </Menu>

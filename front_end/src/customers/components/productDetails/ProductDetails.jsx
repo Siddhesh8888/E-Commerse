@@ -6,6 +6,8 @@ import { indigo } from '@mui/material/colors'
 import ProductReviewCard from './ProductReviewCard'
 import HomeSectionCard from '../homeSectionCard/HomeSectionCard'
 import { mens_kurta } from '../../data/Mens_kurta'
+import Cart from '../cart/Cart'
+import { useNavigate } from 'react-router-dom'
 const product = {
     name: 'Basic Tee 6-Pack',
     price: '$192',
@@ -61,8 +63,13 @@ function classNames(...classes) {
 }
 
 function ProductDetails() {
+    const navigate = useNavigate()
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
     const [selectedSize, setSelectedSize] = useState(product.sizes[2])
+
+    const handleAddToCart = () => {
+        navigate("/cart")
+    }
 
     return (
         <div className="bg-white">
@@ -210,7 +217,7 @@ function ProductDetails() {
                                     </RadioGroup>
                                 </div>
 
-                                <Button variant="contained" sx={{ bgcolor: "#9155fd", px: "2rem", py: "1rem" }}>
+                                <Button variant="contained" sx={{ bgcolor: "#9155fd", px: "2rem", py: "1rem" }} onClick={handleAddToCart}>
                                     Add To Cart
                                 </Button>
                             </form>

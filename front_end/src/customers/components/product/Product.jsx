@@ -19,7 +19,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Product() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   return (
@@ -187,8 +187,8 @@ export default function Example() {
               {/* Filters */}
               <div>
                 <div className='py-10 flex justify-between items-center'>
-                <h1 className='text-lg font-bold opacity-60'>Filters</h1>
-                <FilterListIcon/>
+                  <h1 className='text-lg font-bold opacity-60'>Filters</h1>
+                  <FilterListIcon />
                 </div>
                 <form className="hidden lg:block">
 
