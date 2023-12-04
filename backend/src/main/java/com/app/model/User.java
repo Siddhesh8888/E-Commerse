@@ -1,9 +1,12 @@
 package com.app.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embedded;
@@ -29,21 +32,21 @@ public class User extends BaseEntity{
 	private String role;
 	private String mobile;
 	
-	@OneToMany(mappedBy = "user", orphanRemoval = true)
-	private Address address;
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Address> address = new ArrayList<>();
 	
 	@Embedded
 	@ElementCollection
 	@CollectionTable(name = "pay_info", joinColumns = @JoinColumn(name="user_id"))
-	private PaymentInformation payment;
+	private List<PaymentInformation> payment = new ArrayList<>();
 	
-	@OneToMany
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Rating ratings;
+	private List<Rating> ratings = new ArrayList<>();
 	
-	@OneToMany
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	@JsonIgnore
-	private Review reviews;
+	private List<Review> reviews = new ArrayList<>();
 	private LocalDateTime date;
 
 }

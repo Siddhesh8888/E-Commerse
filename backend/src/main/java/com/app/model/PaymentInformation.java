@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PaymentInformation {
 	
-	private String cardHolderName;
+	private String cardholderName;
 	private String cardNumber;
 	private LocalDate expirationDate;
 	private String cvv;

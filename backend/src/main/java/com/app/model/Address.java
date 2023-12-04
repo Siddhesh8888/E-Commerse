@@ -1,5 +1,7 @@
 package com.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -20,10 +22,11 @@ public class Address extends BaseEntity{
 	private String streetAddress;
 	private String city;
 	private String state;
-	private int zipcode;
+	private int zipCode;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
+	@JsonIgnore
 	private User user;
 	private String mobile;
 
