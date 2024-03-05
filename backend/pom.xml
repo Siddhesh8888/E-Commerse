@@ -81,6 +81,12 @@
 			<version>0.11.5</version>
 			<scope>runtime</scope>
 		</dependency>
+<!--	modelMapper dependancy-->
+		<dependency>
+			<groupId>org.modelmapper.extensions</groupId>
+			<artifactId>modelmapper-spring</artifactId>
+			<version>3.0.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
