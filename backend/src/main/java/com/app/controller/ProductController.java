@@ -51,6 +51,10 @@ public class ProductController {
 
     @GetMapping("/category")
     private  ResponseEntity<?> getProductByCategory(@RequestParam("category") String category) {
-        return ResponseEntity.ok(productService.findByCategory(category));
+        List<Product> products = productService.findByCategory(category);
+
+        if (products.isEmpty())
+            return ResponseEntity.ok("No record available with category "+category);
+        return ResponseEntity.ok(products);
     }
 }
