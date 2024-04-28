@@ -44,7 +44,7 @@ public class CartServiceImpl implements CartService {
             cartItem.setCart(cart);
             CartItem createdCartItem=cartItemService.createCartItem(cartItem);
 
-            cart.getCartItems().add(cartItem);
+            cart.getCartItems().add(createdCartItem);
         }
         return "Item add to cart!!";
     }
