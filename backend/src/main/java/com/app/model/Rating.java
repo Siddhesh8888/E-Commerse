@@ -10,6 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Setter
 @Getter
@@ -27,5 +29,6 @@ public class Rating extends BaseEntity{
 	private Product product;
 	
 	private double rating;
+	private LocalDateTime createdAt;
 
 }
