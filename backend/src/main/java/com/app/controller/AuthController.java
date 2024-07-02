@@ -1,5 +1,7 @@
 package com.app.controller;
 
+import com.app.model.Cart;
+import com.app.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,9 @@ public class AuthController {
 	@Autowired
 	private CustomUserServiceImplementation userServiceDetail;
 	
+	@Autowired
+	private CartService cartService;
+	
 	@PostMapping("/signup")
 	public ResponseEntity<AuthResponse> createUserHandler(@RequestBody User user)throws UserException
 	{
@@ -59,7 +64,8 @@ public class AuthController {
 		createdUser.setLastName(lastName);
 		
 		User savedUser = userRepository.save(createdUser);
-		
+		cartService.createCart(savedUser);
+
 		Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(), savedUser.getPassword());
 		
 		SecurityContextHolder.getContext().setAuthentication(authentication);
